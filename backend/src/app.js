@@ -1,10 +1,12 @@
 import cors from 'cors';
 import express from 'express';
 import {
+  applyImportedPrices,
   bookShow,
   calculateShowPricing,
   listShows
 } from './services/showStore.js';
+import { importPriceList } from './services/priceListImportService.js';
 
 const app = express();
 
@@ -20,6 +22,23 @@ app.get('/api/health', (_request, response) => {
 
 app.get('/api/shows', (_request, response) => {
   response.json({ shows: listShows() });
+});
+
+app.post('/api/pricing/import', (request, response) => {
+  if (!request.body || typeof request.body !== 'object' || Array.isArray(request.body)) {
+    return response.status(400).json({ error: 'Request body must be a JSON object' });
+  }
+
+  try {
+    const report = importPriceList(request.body.prices);
+    const show = request.body.showId
+      ? applyImportedPrices(request.body.showId, report.imported)
+      : undefined;
+    return response.json({ ...report, ...(show ? { show } : {}) });
+  } catch (error) {
+    const status = error.message.startsWith('Show not found:') ? 404 : 400;
+    return response.status(status).json({ error: error.message });
+  }
 });
 
 app.post('/api/pricing/calculate', (request, response) => {

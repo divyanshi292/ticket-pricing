@@ -1,12 +1,4 @@
 :root {
-  font-family: Georgia, 'Times New Roman', serif;
-  color: #17231e;
-  background: #e8e2d6;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-}
-
-:root {
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', sans-serif;
   color: #17231e;
   background: #e8e2d6;
@@ -27,6 +19,15 @@ body {
     linear-gradient(135deg, #e8e2d6 0%, #d6ddd1 100%);
 }
 
+button:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+input:focus-visible,
+summary:focus-visible {
+  outline: 3px solid rgba(180, 95, 50, 0.45);
+  outline-offset: 3px;
+}
+
 .app-shell {
   width: min(100%, 84rem);
   min-height: 100vh;
@@ -45,8 +46,10 @@ body {
 }
 
 .page-header {
+  justify-content: flex-start;
   padding-bottom: 3rem;
   border-bottom: 1px solid rgba(23, 35, 30, 0.2);
+  text-align: left;
 }
 
 .show-bar {
@@ -95,6 +98,85 @@ body {
   font-size: 0.85rem;
 }
 
+.show-select-label select:hover,
+.import-panel textarea:hover {
+  border-color: rgba(23, 35, 30, 0.65);
+}
+
+.import-panel {
+  margin-top: 1.25rem;
+  border-bottom: 1px solid rgba(23, 35, 30, 0.2);
+}
+
+.import-panel summary {
+  padding: 0.9rem 0;
+  color: #b45f32;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.import-panel form {
+  display: grid;
+  gap: 0.75rem;
+  max-width: 42rem;
+  padding: 0 0 1.25rem;
+}
+
+.import-panel form p {
+  margin: 0;
+  color: #66766b;
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+.import-panel textarea {
+  width: 100%;
+  resize: vertical;
+  padding: 0.75rem;
+  border: 1px solid rgba(23, 35, 30, 0.3);
+  border-radius: 0;
+  color: #17231e;
+  background: rgba(247, 244, 236, 0.75);
+  font-family: 'SFMono-Regular', Consolas, monospace;
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+.import-button {
+  justify-self: start;
+  padding: 0.75rem 1rem;
+  border: 1px solid #17231e;
+  color: #17231e;
+  background: transparent;
+  font-weight: 700;
+}
+
+.import-report {
+  display: grid;
+  gap: 0.7rem;
+  padding: 0 0 1.25rem;
+  font-size: 0.8rem;
+}
+
+.report-counts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  color: #3d7a55;
+  font-family: 'SFMono-Regular', Consolas, monospace;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+
+.import-report ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: #8c3f20;
+}
+
 .eyebrow,
 .section-kicker {
   margin: 0;
@@ -119,8 +201,9 @@ h2 {
 
 h1 {
   margin-bottom: 0;
-  font-size: clamp(3rem, 8vw, 6rem);
+  font-size: clamp(2.4rem, 7vw, 6rem);
   line-height: 0.9;
+  white-space: nowrap;
 }
 
 h2 {
@@ -167,6 +250,10 @@ h2 {
   border-bottom: 1px solid rgba(23, 35, 30, 0.14);
 }
 
+.tier-row:hover {
+  background: rgba(247, 244, 236, 0.38);
+}
+
 .tier-info {
   display: grid;
   gap: 0.4rem;
@@ -188,6 +275,8 @@ h2 {
 
 .tier-price {
   margin-left: auto;
+  font-family: 'SFMono-Regular', Consolas, monospace;
+  font-variant-numeric: tabular-nums;
   font-size: 0.95rem;
   font-weight: 700;
 }
@@ -212,8 +301,15 @@ h2 {
   line-height: 1;
 }
 
+.quantity-control button:not(:disabled):hover {
+  color: #f7f4ec;
+  background: #17231e;
+}
+
 .quantity-control output {
   min-width: 1.25rem;
+  font-family: 'SFMono-Regular', Consolas, monospace;
+  font-variant-numeric: tabular-nums;
   text-align: center;
   font-weight: 700;
 }
@@ -255,6 +351,10 @@ h2 {
   font-weight: 700;
 }
 
+.calculate-button:not(:disabled):hover {
+  background: #934b27;
+}
+
 .calculate-button span {
   font-size: 1.4rem;
 }
@@ -270,6 +370,12 @@ h2 {
   color: #17231e;
   background: transparent;
   font-weight: 700;
+}
+
+.confirm-button:not(:disabled):hover,
+.import-button:not(:disabled):hover {
+  color: #f7f4ec;
+  background: #17231e;
 }
 
 .confirm-button span {
@@ -325,6 +431,11 @@ h2 {
   padding-top: 1rem;
 }
 
+.bill-panel {
+  padding-left: clamp(1rem, 3vw, 2.5rem);
+  border-left: 1px solid rgba(23, 35, 30, 0.2);
+}
+
 .bill-lines {
   display: grid;
   gap: 1rem;
@@ -336,6 +447,8 @@ h2 {
 }
 
 .bill-line strong {
+  font-family: 'SFMono-Regular', Consolas, monospace;
+  font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
 
@@ -363,7 +476,8 @@ h2 {
 
 .total-line strong {
   color: #b45f32;
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: 'SFMono-Regular', Consolas, monospace;
+  font-variant-numeric: tabular-nums;
   font-size: 2rem;
   font-weight: 500;
 }
@@ -384,6 +498,13 @@ h2 {
   .workspace {
     grid-template-columns: 1fr;
     gap: 3.5rem;
+  }
+
+  .bill-panel {
+    padding-top: 2rem;
+    padding-left: 0;
+    border-top: 1px solid rgba(23, 35, 30, 0.2);
+    border-left: 0;
   }
 
   .show-bar {

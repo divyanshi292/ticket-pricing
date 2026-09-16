@@ -4,6 +4,13 @@ import './styles.css';
 
 const TICKET_TIERS = ['Silver', 'Gold', 'Recliner'];
 const EMPTY_TICKETS = Object.fromEntries(TICKET_TIERS.map((tier) => [tier, 0]));
+const SAMPLE_PRICE_LIST = JSON.stringify([
+  { name: 'silver', price: '₹1,500' },
+  { name: 'SILVER', price: '1600' },
+  { name: 'Gold', price: 'Rs. 2,500.50' },
+  { name: 'Recliner', price: '' },
+  { name: 'Balcony', price: '-100' }
+], null, 2);
 
 function formatPaisa(paisa) {
   return new Intl.NumberFormat('en-IN', {
@@ -24,6 +31,9 @@ function App() {
   const [isLoadingShows, setIsLoadingShows] = useState(true);
   const [isCalculating, setIsCalculating] = useState(false);
   const [isBooking, setIsBooking] = useState(false);
+  const [priceListText, setPriceListText] = useState(SAMPLE_PRICE_LIST);
+  const [importReport, setImportReport] = useState(null);
+  const [isImporting, setIsImporting] = useState(false);
 
   const selectedShow = shows.find((show) => show.id === showId);
   const pricingConfig = selectedShow?.config;
@@ -120,6 +130,41 @@ function App() {
     }
   }
 
+  async function importPrices(event) {
+    event.preventDefault();
+    setIsImporting(true);
+    setError('');
+
+    try {
+      const prices = JSON.parse(priceListText);
+      const response = await fetch('/api/pricing/import', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ showId, prices })
+      });
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Unable to import price list');
+      }
+
+      setImportReport(result);
+      if (result.show) {
+        setShows((currentShows) => currentShows.map((show) => (
+          show.id === result.show.id ? result.show : show
+        )));
+        setBill(null);
+        setBooking(null);
+      }
+    } catch (requestError) {
+      setError(requestError instanceof SyntaxError
+        ? 'Price list must be valid JSON'
+        : requestError.message);
+    } finally {
+      setIsImporting(false);
+    }
+  }
+
   return (
     <main className="app-shell">
       <header className="page-header">
@@ -148,6 +193,38 @@ function App() {
           </select>
         </label>
       </section>
+      <details className="import-panel">
+        <summary>Import messy price list</summary>
+        <form onSubmit={importPrices}>
+          <p>Use JSON rows with a tier name and rupee price. Accepted rows update this show.</p>
+          <textarea
+            value={priceListText}
+            onChange={(event) => setPriceListText(event.target.value)}
+            aria-label="Price list JSON"
+            rows="8"
+          />
+          <button className="import-button" type="submit" disabled={isImporting || !selectedShow}>
+            {isImporting ? 'Importing...' : 'Clean and import'}
+          </button>
+        </form>
+        {importReport && (
+          <div className="import-report" role="status">
+            <strong>Import report</strong>
+            <div className="report-counts">
+              <span>Imported {importReport.summary.imported}</span>
+              <span>De-duplicated {importReport.summary.deduplicated}</span>
+              <span>Rejected {importReport.summary.rejected}</span>
+            </div>
+            {importReport.rejected.length > 0 && (
+              <ul>
+                {importReport.rejected.map((item) => (
+                  <li key={`${item.index}-${item.reason}`}>Row {item.index + 1}: {item.reason}</li>
+                ))}
+              </ul>
+            )}
+          </div>
+        )}
+      </details>
       <div className="workspace">
         <form className="booking-panel" onSubmit={calculateBill}>
           <div className="section-heading">

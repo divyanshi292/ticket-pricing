@@ -69,6 +69,14 @@ export function calculateShowPricing({ showId, tickets, isMember = false }) {
   return calculatePricing({ tickets, isMember, config: show.config });
 }
 
+export function applyImportedPrices(showId, importedPrices) {
+  const show = getShow(showId);
+  for (const importedPrice of importedPrices) {
+    show.config.tiers[importedPrice.tier].pricePaisa = importedPrice.pricePaisa;
+  }
+  return publicShow(show);
+}
+
 export function bookShow({ showId, tickets, isMember = false }) {
   const show = getShow(showId);
   const bill = calculatePricing({ tickets, isMember, config: show.config });
