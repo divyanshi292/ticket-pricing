@@ -309,8 +309,7 @@ function App() {
           </div>
           {!bill ? (
             <div className="empty-bill">
-              <span className="empty-number">02</span>
-              <p>Select tickets and calculate to see the full price breakdown.</p>
+              <p>Your bill will be displayed here.</p>
             </div>
           ) : (
             <div className="bill-content">

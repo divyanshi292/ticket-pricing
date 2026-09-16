@@ -46,8 +46,9 @@ summary:focus-visible {
 }
 
 .page-header {
+  position: relative;
   justify-content: flex-start;
-  padding-bottom: 3rem;
+  padding: 1rem 6rem 2.25rem 0;
   border-bottom: 1px solid rgba(23, 35, 30, 0.2);
   text-align: left;
 }
@@ -201,7 +202,7 @@ h2 {
 
 h1 {
   margin-bottom: 0;
-  font-size: clamp(2.4rem, 7vw, 6rem);
+  font-size: clamp(2.4rem, 6vw, 5rem);
   line-height: 0.9;
   white-space: nowrap;
 }
@@ -222,11 +223,17 @@ h2 {
   text-transform: uppercase;
 }
 
+.header-mark {
+  position: absolute;
+  top: 1.15rem;
+  right: 0;
+}
+
 .workspace {
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(20rem, 0.9fr);
   gap: clamp(2rem, 7vw, 7rem);
-  padding-top: clamp(2.5rem, 6vw, 5rem);
+  padding-top: clamp(2rem, 4vw, 3.5rem);
 }
 
 .booking-panel,
@@ -414,16 +421,8 @@ h2 {
   color: #66766b;
 }
 
-.empty-number {
-  color: rgba(23, 35, 30, 0.16);
-  font-family: Georgia, 'Times New Roman', serif;
-  font-size: 7rem;
-  line-height: 0.8;
-}
-
 .empty-bill p {
-  max-width: 18rem;
-  margin: 2rem 0 0;
+  margin: 0;
   line-height: 1.5;
 }
 
