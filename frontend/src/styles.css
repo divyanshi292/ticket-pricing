@@ -1,0 +1,503 @@
+:root {
+  font-family: Georgia, 'Times New Roman', serif;
+  color: #17231e;
+  background: #e8e2d6;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+:root {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', sans-serif;
+  color: #17231e;
+  background: #e8e2d6;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background:
+    radial-gradient(circle at 10% 15%, rgba(231, 177, 91, 0.35), transparent 26%),
+    linear-gradient(135deg, #e8e2d6 0%, #d6ddd1 100%);
+}
+
+.app-shell {
+  width: min(100%, 84rem);
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 3rem clamp(1.25rem, 5vw, 5rem);
+}
+
+.page-header,
+.section-heading,
+.tier-row,
+.bill-line,
+.total-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.page-header {
+  padding-bottom: 3rem;
+  border-bottom: 1px solid rgba(23, 35, 30, 0.2);
+}
+
+.show-bar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid rgba(23, 35, 30, 0.2);
+}
+
+.show-copy {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.show-copy strong {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1.35rem;
+  font-weight: 500;
+}
+
+.show-copy span {
+  color: #66766b;
+  font-size: 0.8rem;
+}
+
+.show-select-label {
+  display: grid;
+  gap: 0.45rem;
+  min-width: 14rem;
+  color: #66766b;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.show-select-label select {
+  min-height: 2.7rem;
+  padding: 0 0.75rem;
+  border: 1px solid rgba(23, 35, 30, 0.35);
+  border-radius: 0;
+  color: #17231e;
+  background: rgba(247, 244, 236, 0.7);
+  font-size: 0.85rem;
+}
+
+.eyebrow,
+.section-kicker {
+  margin: 0;
+  color: #b45f32;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+h1,
+h2 {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-weight: 500;
+}
+
+h1 {
+  margin-bottom: 0;
+  font-size: clamp(3rem, 8vw, 6rem);
+  line-height: 0.9;
+}
+
+h2 {
+  margin: 0.65rem 0 0;
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  line-height: 1;
+}
+
+.header-mark,
+.availability-note,
+.bill-status {
+  color: #66766b;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(20rem, 0.9fr);
+  gap: clamp(2rem, 7vw, 7rem);
+  padding-top: clamp(2.5rem, 6vw, 5rem);
+}
+
+.booking-panel,
+.bill-panel {
+  min-width: 0;
+}
+
+.section-heading {
+  align-items: flex-end;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(23, 35, 30, 0.2);
+}
+
+.tier-list {
+  margin: 1rem 0 2rem;
+}
+
+.tier-row {
+  min-height: 5.7rem;
+  gap: 1rem;
+  border-bottom: 1px solid rgba(23, 35, 30, 0.14);
+}
+
+.tier-info {
+  display: grid;
+  gap: 0.4rem;
+  min-width: 7rem;
+}
+
+.tier-name {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1.45rem;
+}
+
+.tier-meta {
+  color: #66766b;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.tier-price {
+  margin-left: auto;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-left: 1rem;
+}
+
+.quantity-control button {
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  place-items: center;
+  border: 1px solid rgba(23, 35, 30, 0.35);
+  border-radius: 50%;
+  color: #17231e;
+  background: transparent;
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.quantity-control output {
+  min-width: 1.25rem;
+  text-align: center;
+  font-weight: 700;
+}
+
+.member-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin: 2rem 0;
+  cursor: pointer;
+}
+
+.member-toggle input {
+  width: 1.1rem;
+  height: 1.1rem;
+  accent-color: #b45f32;
+}
+
+.toggle-copy {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.toggle-copy small,
+.bill-line small {
+  color: #66766b;
+  font-size: 0.75rem;
+}
+
+.calculate-button {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  border: 0;
+  color: #f7f4ec;
+  background: #b45f32;
+  font-weight: 700;
+}
+
+.calculate-button span {
+  font-size: 1.4rem;
+}
+
+.confirm-button {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid #17231e;
+  color: #17231e;
+  background: transparent;
+  font-weight: 700;
+}
+
+.confirm-button span {
+  font-size: 1.4rem;
+}
+
+.booking-confirmation {
+  display: grid;
+  gap: 0.35rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  border-left: 3px solid #3d7a55;
+  color: #3d7a55;
+  background: rgba(61, 122, 85, 0.1);
+}
+
+.booking-confirmation span {
+  font-size: 0.8rem;
+}
+
+.error-message {
+  margin: 0 0 1rem;
+  padding: 0.8rem 1rem;
+  border-left: 3px solid #b45f32;
+  color: #8c3f20;
+  background: rgba(180, 95, 50, 0.1);
+  font-size: 0.85rem;
+}
+
+.empty-bill {
+  display: grid;
+  min-height: 22rem;
+  align-content: center;
+  justify-items: start;
+  padding: 2rem 0;
+  color: #66766b;
+}
+
+.empty-number {
+  color: rgba(23, 35, 30, 0.16);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 7rem;
+  line-height: 0.8;
+}
+
+.empty-bill p {
+  max-width: 18rem;
+  margin: 2rem 0 0;
+  line-height: 1.5;
+}
+
+.bill-content {
+  padding-top: 1rem;
+}
+
+.bill-lines {
+  display: grid;
+  gap: 1rem;
+}
+
+.bill-line {
+  gap: 1rem;
+  font-size: 0.9rem;
+}
+
+.bill-line strong {
+  white-space: nowrap;
+}
+
+.bill-subtotal {
+  padding-top: 1rem;
+  border-top: 1px solid rgba(23, 35, 30, 0.2);
+  font-weight: 700;
+}
+
+.discount-line {
+  color: #3d7a55;
+}
+
+.total-line {
+  align-items: baseline;
+  margin-top: 2rem;
+  padding-top: 1.25rem;
+  border-top: 2px solid #17231e;
+}
+
+.total-line span {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1.35rem;
+}
+
+.total-line strong {
+  color: #b45f32;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+@media (max-width: 720px) {
+  .app-shell {
+    padding-top: 2rem;
+  }
+
+  .page-header {
+    align-items: flex-start;
+  }
+
+  .header-mark {
+    display: none;
+  }
+
+  .workspace {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+  }
+
+  .show-bar {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .show-select-label {
+    min-width: 0;
+  }
+}
+
+@media (max-width: 420px) {
+  .section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .tier-row {
+    flex-wrap: wrap;
+    padding: 1rem 0;
+  }
+
+  .tier-price {
+    margin-left: auto;
+  }
+
+  .quantity-control {
+    width: 100%;
+    justify-content: flex-end;
+    margin-left: 0;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(231, 177, 91, 0.32), transparent 30%),
+    linear-gradient(135deg, #e8e2d6 0%, #d6ddd1 100%);
+}
+
+.app-shell {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  padding: 2rem;
+}
+
+.intro-panel {
+  width: min(100%, 48rem);
+  padding: clamp(2rem, 6vw, 5rem);
+  border: 1px solid rgba(23, 35, 30, 0.2);
+  background: rgba(247, 244, 236, 0.78);
+  box-shadow: 12px 12px 0 rgba(23, 35, 30, 0.08);
+}
+
+.eyebrow {
+  margin: 0 0 1rem;
+  color: #b45f32;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+h1 {
+  max-width: 10ch;
+  margin: 0;
+  font-size: clamp(2.75rem, 8vw, 5.75rem);
+  line-height: 0.94;
+  font-weight: 500;
+}
+
+.intro-copy {
+  max-width: 34rem;
+  margin: 2rem 0 0;
+  font-size: 1.2rem;
+  line-height: 1.55;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-top: 2.5rem;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid rgba(23, 35, 30, 0.2);
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.status-dot {
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background: #3d7a55;
+}
+
+@media (max-width: 480px) {
+  .app-shell {
+    padding: 1rem;
+  }
+
+  .intro-panel {
+    padding: 2rem 1.5rem;
+  }
+}
